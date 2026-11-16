@@ -1,0 +1,23 @@
+# KiCad: local history, backups, lock files, per-user settings, caches
+.history/
+*-backups/
+*.lck
+_autosave-*
+fp-info-cache
+*.kicad_prl
+
+# Check reports written by the scripts (they hold local paths)
+/drc.json
+/erc.json
+
+# Intermediate files of the scripts
+/led_heart_hand.kicad_pcb
+/led_heart_routed.kicad_pcb
+fabrication/_gerbers/
+fabrication/_pos.csv
+*.dsn
+*.ses
+
+# Python
+__pycache__/
+*.pyc

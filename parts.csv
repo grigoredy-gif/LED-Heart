@@ -1,0 +1,12 @@
+Ref,Qty per board,Value,Package,LCSC,JLC class,USD each,Min billed,Note
+LED1-LED72,72,Red LED KT-0603R,0603,C2286,Basic,0.0077,20,145 to 300 mcd at 20 mA; Vf 1.8 to 2.4 V; pad 1 = anode in JLC's footprint
+U1,1,STM8S003F3P6TR,TSSOP-20,C52717,Preferred,0.5105,1,
+U2,1,74HC595D,SOIC-16,C5947,Basic,0.1031,1,
+Q1-Q8,8,S8050,SOT-23,C2146,Basic,0.0142,10,row switches
+R1-R9,9,270 ohm 1%,0603,C22966,Basic,0.0017,20,column resistors; 270 ohm after the data-sheet check (220 ohm was C22962)
+R10-R19,10,1 k 1%,0603,C21190,Basic,0.0017,20,8 base resistors + 2 button pull-ups
+C1-C4,4,1 uF 50 V X5R,0603,C15849,Basic,0.0083,20,
+SW1-SW5,5,Tact switch TS-1187A-B-A-B,SMD 5.1 x 5.1 mm,C318884,Basic,0.0215,5,
+D1,1,SS14,SMA,C2480,Basic,0.0192,5,protects against swapped battery wires
+J1,1,1 x 4 pads 2.54 mm,through-hole pads,,not fitted,,,SWIM programming
+JP1,1,jumper pads bridged by a trace,,,not fitted,,,cut to add a hard switch

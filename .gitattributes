@@ -1,0 +1,5 @@
+# LF everywhere, also in the working copy: KiCad writes LF and build_board.sh needs it
+* text=auto eol=lf
+*.png binary
+*.pdf binary
+*.zip binary

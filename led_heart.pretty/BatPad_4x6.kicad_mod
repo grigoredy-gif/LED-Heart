@@ -1,0 +1,11 @@
+(footprint "BatPad_4x6"
+	(version 20241229)
+	(generator "led_sch")
+	(layer "F.Cu")
+	(descr "Solder pad 4 x 6 mm for a battery wire")
+	(property "Reference" "REF**" (at 0 -4 0) (layer "F.SilkS") (effects (font (size 1 1) (thickness 0.15))))
+	(property "Value" "BatPad_4x6" (at 0 4 0) (layer "F.Fab") (effects (font (size 1 1) (thickness 0.15))))
+	(attr smd exclude_from_pos_files exclude_from_bom)
+	(fp_rect (start -2.25 -3.25) (end 2.25 3.25) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd"))
+	(pad "1" smd roundrect (at 0 0) (size 4 6) (layers "F.Cu" "F.Mask") (roundrect_rratio 0.1))
+)
