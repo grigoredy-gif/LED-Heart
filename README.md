@@ -5,6 +5,10 @@ microcontroller and a 74HC595 shift register. It shows a beating heart,
 animations and scrolling text, and runs from three AA or AAA cells. Five buttons
 choose the mode, the speed and the brightness, and switch it on and off.
 
+| The finished board | Worn under a shirt |
+|---|---|
+| ![The finished board showing the heart, with the ST-Link programmer plugged into the laptop](photos/board_lit.jpg) | ![The heart glowing through a shirt](photos/heart_through_shirt.jpg) |
+
 ![The board, rendered in KiCad](preview/angle.png)
 
 | Top | Bottom |
@@ -116,6 +120,7 @@ The full notes (decisions, circuit, checks, bring-up steps, firmware notes) are 
 | `fabrication/` | JLCPCB order files: Gerber zip, BOM, placement file, order settings |
 | `gen/` | scripts for the schematic, the board, the order files and the renders |
 | `preview/` | 3D renders |
+| `photos/` | photos of the finished board |
 | `enclosure/` | 3D-printable box (STL, 89.6 x 54.6 x 25.1 mm): the board sits in a pocket flush with the rim, screwed onto four slim corner posts with M3 x 8 to 10 mm screws; the 3 x AA holder glued to its back rests on the floor; made by `gen/led_box.py` |
 | `firmware/` | `heart/` beating heart, `test/` bring-up test (both C for SDCC), `flash.bat` for stm8flash |
 | `docs/design-notes.md` | design notes |
