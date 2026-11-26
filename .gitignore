@@ -21,3 +21,10 @@ fabrication/_pos.csv
 # Python
 __pycache__/
 *.pyc
+
+# Firmware build output
+firmware/*/build/
+firmware/tools/*.exe
+
+# Personal firmware (private texts), kept out of the repository
+firmware/personal/

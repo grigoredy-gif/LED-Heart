@@ -17,8 +17,38 @@ no 3D model of the buttons, so the renders use a look-alike of about the same si
 ## Status
 
 - **Hardware:** designed, checked and ordered at JLCPCB in November 2026
-  (5 boards, assembled by JLCPCB). Not built or tested yet.
-- **Firmware:** not written yet; the plan is below.
+  (5 boards, assembled by JLCPCB). Built and working: all 72 LEDs and the buttons
+  pass the bring-up test.
+- **Firmware:** a beating heart with speed, brightness, sleep and auto-off
+  (`firmware/heart`), and a bring-up test (`firmware/test`). The test and the
+  display, button and sleep code have run on the board.
+- **Box:** a 3D-printable box for the board and a 3 x AA holder (`enclosure/`).
+
+## Build your own
+
+Everything needed is in this repository.
+
+1. **Order the boards.** Upload the three files in `fabrication/` to JLCPCB
+   (Gerber zip, BOM, placement file) and follow `fabrication/READ_ME_FIRST.txt`.
+   JLCPCB solders every part on the top side.
+2. **Battery holder.** A 3 x AA (or AAA) holder: red wire to the + pad, black to
+   the - pad on the back. 3 x 1.5 V; never more than 5 V (no 4 cells, no 9 V).
+3. **Programmer.** An ST-Link V2 clone (the small USB stick, about 2 to 10 euros).
+   Not a "V2-1" and not an STLINK-V3MINI: those may lack SWIM.
+4. **Compiler.** SDCC 4.x (https://sdcc.sourceforge.net). Double-click
+   `firmware/heart/build.bat`; it writes `led_heart.hex`.
+5. **Flash.** Wire the ST-Link to J1 by the names printed on both (3.3V, SWIM,
+   GND, RST; never 5 V; no cells in). Then either:
+   - ST Visual Programmer (free from st.com, installs the driver), steps in
+     `firmware/test/README.md`; or
+   - stm8flash (https://github.com/vdudouyt/stm8flash) with the WinUSB driver
+     (installed with Zadig on "STM32 STLink"): put `stm8flash.exe` in
+     `firmware/tools/` and run `firmware/flash.bat`. On Windows it has to be built
+     from source; leaving out the ESP-STLink part makes it build with MSYS2 gcc.
+   It is worth flashing `firmware/test` first: it lights every LED in turn and
+   shows each button, so a bad joint shows at once.
+6. **Box.** Print `enclosure/led_heart_box.stl` open side up, no supports, and
+   screw the board on with four M3 x 8 to 10 mm screws.
 
 ## How it works
 
@@ -86,6 +116,8 @@ The full notes (decisions, circuit, checks, bring-up steps, firmware notes) are 
 | `fabrication/` | JLCPCB order files: Gerber zip, BOM, placement file, order settings |
 | `gen/` | scripts for the schematic, the board, the order files and the renders |
 | `preview/` | 3D renders |
+| `enclosure/` | 3D-printable box (STL, 89.6 x 54.6 x 25.1 mm): the board sits in a pocket flush with the rim, screwed onto four slim corner posts with M3 x 8 to 10 mm screws; the 3 x AA holder glued to its back rests on the floor; made by `gen/led_box.py` |
+| `firmware/` | `heart/` beating heart, `test/` bring-up test (both C for SDCC), `flash.bat` for stm8flash |
 | `docs/design-notes.md` | design notes |
 
 ## Rebuilding
@@ -104,12 +136,13 @@ to KiCad and Freerouting 2.1.0 are set at the top of `gen/led_board.py`,
 To order, upload the three files in `fabrication/` to JLCPCB and follow
 `fabrication/READ_ME_FIRST.txt`.
 
-## Firmware plan
+## Firmware
 
-C built with SDCC, flashed over SWIM with an ST-Link. A timer scans the rows at
-100 frames per second or more, with brightness in steps. Modes: beating heart,
-chase, fill, sparkle, steady and scrolling text. Mode, speed and brightness are
-saved in EEPROM. ON/OFF puts the chip in halt with the LEDs off and wakes it.
+C built with SDCC, flashed over SWIM with an ST-Link. A timer interrupt at 16 kHz
+scans the rows (125 frames per second) and sets the brightness by how long each
+row stays on. Speed and brightness are saved in EEPROM. ON/OFF puts the chip in
+halt with the LEDs off (about 10 uA) and wakes it. The MODE button is left free
+for your own animations; `firmware/heart/README.md` says how.
 
 ## License
 
